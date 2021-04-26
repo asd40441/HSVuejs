@@ -1,0 +1,30 @@
+
+<!-- 報數 38 ： 涂阿銘
+1. mySlackName
+2. restaurantNum
+3. courseId
+4. graduationDate
+5. practiceTime
+
+函式:
+1. getProduct
+2. showChart
+3. selectCart
+4. sortRegisterDate
+5. deleteOrder
+-->
+
+
+變數:
+1. 我的 slack 名稱
+2. 餐廳數量
+3. 課程 id
+4. 畢業日期
+5. 練習時間
+
+函式:
+1. 取得產品資料
+2. 渲染圖表
+3. 篩選購物車資料
+4. 排序註冊日期
+5. 刪除訂單
