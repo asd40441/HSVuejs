@@ -13,7 +13,7 @@
 // 語法糖：不會影響運作，邏輯與當前 JS 一致
 const obj = {
   myName: '物件',
-  fn: function() {
+  fn:() => {
     return this.myName;
   }
 }
@@ -37,8 +37,11 @@ console.log(obj.fn());
 //   name: '小明'
 // };
 
+// const people = {
+//   person
+// }
 
-
+// console.log(people);
 
 // #3 展開
 // #3-1 不同陣列合併
