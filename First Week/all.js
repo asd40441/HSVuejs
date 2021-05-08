@@ -1,5 +1,7 @@
 let productData = []
 
+
+// 新增資料
 document.getElementById('addProduct').addEventListener('click', (e) => {
   const timeStamp = Math.floor(Date.now());
   if (document.getElementById('title').value.trim() !== '') {
@@ -41,6 +43,8 @@ document.getElementById('addProduct').addEventListener('click', (e) => {
   }
 });
 
+
+// 刪除所有
 document.getElementById('clearAll').addEventListener('click', (e) => {
   e.preventDefault();
   productData = [];
@@ -71,6 +75,7 @@ document.getElementById('clearAll').addEventListener('click', (e) => {
   document.getElementById('productCount').textContent = productData.length;
 });
 
+// 個別刪除
 document.getElementById('productList').addEventListener('click', (e) => {
   const action = e.target.dataset.action;
   const id = e.target.dataset.id;
@@ -116,6 +121,7 @@ document.getElementById('productList').addEventListener('click', (e) => {
   document.getElementById('productCount').textContent = productData.length;
 });
 
+// 初始渲染
 let str = '';
 productData.forEach((item) => {
   str += `
