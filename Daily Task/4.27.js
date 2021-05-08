@@ -11,3 +11,5 @@ console.log(arr['1']);  // 請取得結果為 'b' 的值
 console.log(arr[c]);  // 請取得結果為 'c' 的值，必須使用變數
 console.log(arr.b);  // 請取得結果為 'd' 的值，必須使用點記號
 console.log(arr['--some data']);  // 請取得結果為 'e' 的值
+
+
