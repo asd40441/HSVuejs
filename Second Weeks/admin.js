@@ -5,7 +5,6 @@ let data = [];
 // 取得HTML資料
 const list = document.querySelector('#productList');
 const productCount = document.querySelector('#productCount');
-const loginStates = document.querySelector('#loginStates');
 
 // 取得產品列表
 function getProducts() {
@@ -54,6 +53,7 @@ list.addEventListener('click', (e) => {
     // console.log(id);
     deleteProduct(id);
 });
+
 // 傳送刪除請求
 function deleteProduct(id) {
     axios.delete(`${url}/api/${path}/admin/product/${id}`)

@@ -15,7 +15,6 @@ function loginUser() {
         "username": email.value,
         "password": password.value
     };
-
     axios.post(`${url}/admin/signin`, user)
         .then(res => {
             console.log(res);
