@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,44 @@
     <title>Vue Test</title>
     <style>
         body {
-            background-color: black;
+            background-color: gray;
         }
     </style>
 </head>
+
 <body>
-    <h1 style="background-color: blanchedalmond;">
-        測試
-    </h1>
-    <input type="text" value="520" id="app">
-    <script src="5.13.js"></script>
+    <div id="app">
+        <h4>字串</h4>
+        {{ text }}
+        <span v-text="text"></span>
+        <input type="text" class="form-control" v-model="text">
+
+        <h4 class="mt-3">原始 HTML</h4>
+        {{ rawHtml }}
+        <p v-html="rawHtml">請在此加入原始 HTML 結構</p>
+        <p><a href="https://vue3js.cn/docs/zh/api/directives.html#v-html">額外注意事項</a></p>
+
+        <h4 class="mt-3">單次綁定</h4>
+        <div v-once>此欄位為單次綁定 {{ text }}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 實體化 Vue 物件，並傳入特定屬性及方法
+        const app = {
+            // Vue 有雙向綁定的特性，在此需要先定義基本的資料才能進行綁定
+            data() {
+                return {
+                    text: 0
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script>
+
+
+
+    <script src="5.14.js"></script>
 </body>
+
 </html>
