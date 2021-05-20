@@ -1,6 +1,3 @@
-const url = 'https://vue3-course-api.hexschool.io'; 
-const path = 'asd40441'; 
-
 // 取得HTML資料
 const email = document.querySelector('#username');
 const password = document.querySelector('#password');
@@ -17,7 +14,7 @@ const app = {
         btn.addEventListener('click', e => {    // 點擊登入
             this.user.username = email.value;
             this.user.password = password.value;
-            axios.post(`${url}/admin/signin`, this.user)    // 傳送登入請求
+            axios.post(`${this.url}/admin/signin`, this.user)    // 傳送登入請求
                 .then(res => {
                     console.log(res);
                     alert(res.data.message);
@@ -26,7 +23,7 @@ const app = {
                     }
                     const token = res.data.token;
                     const expired = res.data.expired;
-                    document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
+                    document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;    // 儲存cookie
                     window.location.href = "admin.html";
                 })
         });
