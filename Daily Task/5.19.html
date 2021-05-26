@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 5/18</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container p-3">
+            <h3>年紀大於 25 歲的同事</h3>
+            <ul>
+                <template v-for="(item,key) in collegueList" :key="key">
+                    <li v-if="item.age > 25">
+                        <p v-for="(arrValue,arrName) in item" :key="arrName">屬性: {{arrName}}，值: {{arrValue}}</p>
+                    </li>
+                </template>
+            </ul>
+            <h3>年紀小於 25 歲的同事</h3>
+            <ul>
+                <template v-for="(item,key) in collegueList">
+                    <li v-if="item.age < 25">
+                        <p v-for="(arrValue,arrName) in item" :key="arrName">屬性: {{arrName}}，值: {{arrValue}}</p>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    collegueList: [{
+                            name: 'Jack',
+                            age: 18,
+                            jobName: 'Frontend Engineer'
+                        },
+                        {
+                            name: 'Nick',
+                            age: 27,
+                            jobName: 'Backend Engineer'
+                        },
+                        {
+                            name: 'Ming',
+                            age: 19,
+                            jobName: 'App Engineer'
+                        },
+                        {
+                            name: 'Zekk',
+                            age: 28,
+                            jobName: 'Project Manager'
+                        },
+                    ]
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script>
+
+</body>
+
+</html>
