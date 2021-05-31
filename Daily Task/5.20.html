@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 5/18</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container p-3">
+            <div class="d-flex flex-column">
+                <label for="name">請輸入姓名</label>
+                <input type="text" class="mb-3" v-model="name">
+            </div>
+            <button type="button" class="btn btn-primary" @click="callName">觸發事件</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    name: ''
+                }
+            },
+            methods: {
+                callName() {
+                    alert(this.name);
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script>
+
+</body>
+
+</html>
