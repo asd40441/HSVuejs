@@ -16,15 +16,15 @@
                 <label for="name" class="mb-2">Q1: 請填入姓名</label>
                 <br>
                 <!--    請用 v-model (綁定對象為 personalInfo.name) -->
-                <input type="text" id="name" v-model="personalInfo.name">
+                <input type="text" id="name">
             </div>
 
             <div class="mb-3">
                 <p class="mb-2">Q2: 請選擇性別</p>
-                <div class="form-check" v-for="(item,key) in genders" :key="key">
+                <div class="form-check">
                     <!--    請用  v-model(綁定對象為 personalInfo.genders) + v-bind + v-for (記得搭配 key) -->
-                    <input class="form-check-input" type="radio" value="" id="" v-model="personalInfo.genders">
-                    <label class="form-check-label" for="(arr,arrValue) in item" :key="arrValue">{{item}}</label>
+                    <input class="form-check-input" type="radio" value="" id="">
+                    <label class="form-check-label" for="">{{}}</label>
                 </div>
             </div>
 
@@ -32,8 +32,8 @@
                 <label for="favoritePet" class="mb-2">Q3: 您是貓派還是狗派?</label>
                 <br>
                 <!--    請用  v-model(綁定對象為 personalInfo.favoritePet) + v-bind + v-for (記得搭配 key)，綁定對象為 petGenre -->
-                <select name="favoritePet" id="favoritePet" v-for="item in petGenre">
-                    <option value="item" v-model="personalInfo.favoritePet">我是{{item}}</option>
+                <select name="favoritePet" id="favoritePet">
+                    <option value="">我是{{}}</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -70,7 +70,7 @@
         <li>請同學使用 v-model, v-bind, v-for 的概念完成練習，填寫上方的表單將可以同步更新下方 ul 的資料。</li>
         <li>選項的 label for、input id 需要互相對應。</li>
         <li>Q2, Q3, Q4 的選項需要用 v-for 呈現。</li>
-        <li>Q5 的部分只需要用一個 checkbox, 並會在 true, false 之間做切換。</li>  
+        <li>Q5 的部分只需要用一個 checkbox, 並會在 true, false 之間做切換。</li>
     </ol>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
