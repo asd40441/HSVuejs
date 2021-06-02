@@ -30,10 +30,11 @@
     <div id="app">
         <div class="container p-3">
             <h3>Q1. 延伸</h3>
-            <div class="box mb-3"></div>
+            <div class="box mb-3" :class="isTransform ? 'stretch' : ''"></div>
             <h3>Q2. 延伸 + 變色</h3>
-            <div class="box mb-3"></div>
-            <button type="button" class="btn btn-primary">改變樣式</button>
+            <div class="box mb-3" :class="isTransform ? 'stretch colorChange' : ''"></div>
+            <button type="button" class="btn btn-primary" @click="isTransform = !isTransform">改變樣式</button>
+            {{isTransform}}
         </div>
     </div>
 
