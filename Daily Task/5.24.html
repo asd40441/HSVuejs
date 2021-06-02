@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 5/24</title>
+</head>
+
+<body>
+    <div id="app">
+        {{ text }}
+    </div>
+    <a href="https://codepen.io/znlcgmgk/pen/eYgbEYP?editors=1010">模板</a>
+    請把 createApp 方法背起來，並讓模板中的 text 可以正常顯示。
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    text: '這有一段話'
+                };
+            },
+        }
+        Vue.createApp(app).mount('#app');
+    </script>
+
+</body>
+
+</html>
