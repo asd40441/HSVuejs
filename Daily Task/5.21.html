@@ -16,15 +16,15 @@
                 <label for="name" class="mb-2">Q1: 請填入姓名</label>
                 <br>
                 <!--    請用 v-model (綁定對象為 personalInfo.name) -->
-                <input type="text" id="name">
+                <input type="text" id="name" v-model="personalInfo.name">
             </div>
 
             <div class="mb-3">
                 <p class="mb-2">Q2: 請選擇性別</p>
-                <div class="form-check">
+                <div class="form-check" v-for="item in genders">
                     <!--    請用  v-model(綁定對象為 personalInfo.genders) + v-bind + v-for (記得搭配 key) -->
-                    <input class="form-check-input" type="radio" value="" id="">
-                    <label class="form-check-label" for="">{{}}</label>
+                    <input class="form-check-input" type="radio" :value="item" :id="item" v-model="personalInfo.gender">
+                    <label class="form-check-label">{{item}}</label>
                 </div>
             </div>
 
@@ -32,17 +32,17 @@
                 <label for="favoritePet" class="mb-2">Q3: 您是貓派還是狗派?</label>
                 <br>
                 <!--    請用  v-model(綁定對象為 personalInfo.favoritePet) + v-bind + v-for (記得搭配 key)，綁定對象為 petGenre -->
-                <select name="favoritePet" id="favoritePet">
-                    <option value="">我是{{}}</option>
+                <select name="favoritePet" id="favoritePet" v-model="personalInfo.favoritePet">
+                    <option :value="item" v-for="(item,key) in petGenre" :key="key" >我是{{item}}</option>
                 </select>
             </div>
             <div class="mb-3">
                 <p class="mb-2">Q4: 您的甜點愛好</p>
                 <!--    請用  v-model(綁定對象為 personalInfo.loveDessert)  + v-bind + v-for (記得搭配 key) -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="">
+                <div class="form-check" v-for="item in desserts">
+                    <input class="form-check-input" type="checkbox" :value="item" :id="item" v-model="personalInfo.loveDessert">
                     <label class="form-check-label" for="">
-                        {{ dessert }}
+                        {{ item }}
                     </label>
                 </div>
             </div>
@@ -50,9 +50,9 @@
                 <p class="mb-2">Q5: 是否為單身</p>
                 <!--  請用  v-model (綁定對象為 single) -->
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="single">
+                    <input class="form-check-input" type="checkbox" id="single" v-model="personalInfo.single">
                     <label class="form-check-label" for="single">
-                        {{}}
+                        {{personalInfo.single}}
                     </label>
                 </div>
             </div>
