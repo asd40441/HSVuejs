@@ -40,10 +40,10 @@
             </form>
             <!--  只會輸出 console.log 一次 -->
             <h3>Q2</h3>
-            <button @click="executeOnce" class="mb-3">點擊按鈕</button>
+            <button @click.once="executeOnce" class="mb-3">點擊按鈕</button>
             <!--  只有按下 enter 時會輸出 text 的內容  -->
             <h3>Q3</h3>
-            <input type="text" v-model="text" @keyup="onEnter">
+            <input type="text" v-model="text" @keyup.enter="onEnter">
         </div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
