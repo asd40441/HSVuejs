@@ -9,10 +9,13 @@ const app = {
     getProducts() { // 取得產品列表
         axios.get(`${this.url}/api/${this.path}/admin/products`)
             .then(res => {
-                // console.log(res);
+                console.log(res);
                 data = res.data.products;
                 // console.log(data);
                 this.render();
+            })
+            .catch(res => {
+                console.log(res);
             })
     },
     render() { // 渲染產品列表
@@ -51,6 +54,9 @@ const app = {
                 .then(res => {
                     console.log(res);
                     this.getProducts();
+                })
+                .catch(res => {
+                    console.log(res);
                 })
         });
     },

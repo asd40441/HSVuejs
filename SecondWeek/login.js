@@ -17,14 +17,21 @@ const app = {
             axios.post(`${this.url}/admin/signin`, this.user)    // 傳送登入請求
                 .then(res => {
                     console.log(res);
-                    alert(res.data.message);
-                    if (res.data.message == '登入失敗') {
+                    if(res.data.success){
+                        console.log("登入成功");
+                        alert("登入成功");
+                    }else{
+                        console.log("登入失敗");
+                        alert("登入失敗");
                         return;
                     }
                     const token = res.data.token;
                     const expired = res.data.expired;
                     document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;    // 儲存cookie
                     window.location.href = "admin.html";
+                })
+                .catch(res=>{
+                    console.log(res);
                 })
         });
 
