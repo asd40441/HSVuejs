@@ -10,6 +10,12 @@ const app = {
         axios.get(`${this.url}/api/${this.path}/admin/products`)
             .then(res => {
                 console.log(res);
+                if(res.data.success){
+                    console.log("讀取產品成功");
+                }else{
+                    console.log("讀取產品失敗");
+                    return;
+                }
                 data = res.data.products;
                 // console.log(data);
                 this.render();
@@ -53,6 +59,12 @@ const app = {
             axios.delete(`${this.url}/api/${this.path}/admin/product/${id}`)    // 傳送刪除請求
                 .then(res => {
                     console.log(res);
+                    if(res.data.success){
+                        console.log("產品已刪除");
+                    }else{
+                        console.log("產品刪除失敗");
+                        return;
+                    }
                     this.getProducts();
                 })
                 .catch(res => {
@@ -69,4 +81,4 @@ const app = {
     }
 }
 
-app.init();
+app.init(); // 頁面初始化
