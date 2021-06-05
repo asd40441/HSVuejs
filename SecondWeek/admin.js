@@ -54,7 +54,7 @@ const app = {
             if (e.target.nodeName !== 'BUTTON') {
                 return;
             }
-            let id = e.target.getAttribute('data-id');
+            const id = e.target.getAttribute('data-id');
             // console.log(id);
             axios.delete(`${this.url}/api/${this.path}/admin/product/${id}`)    // 傳送刪除請求
                 .then(res => {
