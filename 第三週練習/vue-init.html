@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 我房子在這 -->
+  <div id="app">
+    <!-- 基礎運用 -->
+    {{ text }}
+    {{ item.text }}
+    <button type="button" @click="updateItem">
+      更新物件內的文字
+    </button>
+    <input type="text" v-model="text">
+
+    <!-- 列表 -->
+    <ul>
+      <li v-for="(item, key) in list" :key="key">
+        {{ item.name }}
+      </li>
+    </ul>
+
+    <!-- 屬性運用 -->
+    <img :src="imgUrl" alt="">
+
+    <!-- 判斷式 -->
+    <div v-if="isShow">這段要顯示</div>
+    <div v-else>這段不要顯示</div>
+  </div>
+
+  <!-- 朋友的房子 -->
+  <div id="app2">
+    {{ text }}
+  </div>
+  
+  <script>
+    const appObj = {
+      // 建構房子的資料集
+      data() {
+        return {
+          text: '小明的房子',
+          item: {
+            
+          },
+          imgUrl: 'https://images.unsplash.com/photo-1593560368818-bd0c238ef976?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+          list: [
+            { name: '小明' }, { name: '小美' }, { name: '杰倫' }
+          ],
+          isShow: false,
+        }
+      },
+      // 房子會用到的方法
+      methods: {
+        updateItem() {
+          this.item.text = '11234'
+        }
+      },
+      // 房子出現的瞬間，會做什麼事
+      created() {
+        console.log(this.text);
+      }
+    }
+
+    const app = Vue.createApp(appObj)
+    app.mount('#app');
+
+    // 每個根元件都是獨立的（元件之間也是獨立的）
+    const app2 = Vue.createApp(appObj)
+    app2.mount('#app2');
+
+  </script>
+</body>
+</html>

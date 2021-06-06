@@ -84,11 +84,13 @@ const admin = {
 const app = {
     data() {
         return {
-            daaa: '123'
+
         }
     },
-    methods: {},
-    created: {
+    methods: {
+
+    },
+    created() {
 
     }
 }

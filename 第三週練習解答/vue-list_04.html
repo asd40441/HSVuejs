@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 小明的筆記本 -->
+  <h1>問題：關於編輯項目</h1>
+  <ol>
+    <li>如何解決 tempData 中，與原始資料互相參考的問題</li>
+  </ol>
+  <div id="app">
+    <h2>新增區塊</h2>
+    <input type="text" v-model="newText">
+    <button type="button" @click="addData">送出</button>
+
+    <hr>
+    <h2>列表</h2>
+    <ul>
+      <li v-for="(item, i) in list" :key="i">
+        {{ item.content }}
+        <button type="button" @click="prepareEdit(item)">編輯</button>
+        <button type="button" @click="removeData(item.id)">刪除</button>
+      </li>
+    </ul>
+
+    <hr>
+    <h2>編輯區域</h2>
+    <input type="text" v-model="tempData.content">
+    <button type="button">確認編輯</button>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          // 建構資料
+          text: '小明的筆記本',
+          newText: '',
+          list: [
+            {
+              id: 1,
+              content: '一些內容'
+            },
+            {
+              id: 2,
+              content: '第二筆內容'
+            }
+          ],
+          other: [],
+          tempData: {}
+        }
+      },
+      methods: {
+        addData() {
+          const id = (new Date()).getTime()
+          const newData = {
+            id,
+            content: this.newText
+          }
+          this.newText = ''
+          this.list.push(newData);
+        },
+        removeData(id) {
+          let index;
+          this.list.forEach((item, key) => {
+            if (item.id == id) {
+              index = key;
+            }
+          });
+          this.list.splice(index, 1);
+        },
+        prepareEdit(item) {
+          this.tempData = {...item};
+        },
+      },
+      created() {
+      }
+    }).mount('#app')
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 小明的筆記本 -->
+  <h1>問題：列表已經完成，如何 “新增” 一個項目</h1>
+  <ol>
+    <li>請問 newData 如何與 list 的單一品項結構一致</li>
+    <li>如何新增一個項目至 list</li>
+    <li>如何將事件綁定至送出按鈕</li>
+  </ol>
+  <div id="app">
+    <h2>新增區塊</h2>
+    <input type="text" v-model="newText">
+    <button type="button" @click="addData">送出</button>
+
+    <hr>
+    <h2>列表</h2>
+    <ul>
+      <li v-for="(item, i) in list" :key="i">
+        {{ item.content }}
+        <button type="button">編輯</button>
+        <button type="button">刪除</button>
+      </li>
+    </ul>
+
+    <hr>
+    <h2>編輯區域</h2>
+    <input type="text">
+    <button type="button">確認編輯</button>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          // 建構資料
+          text: '小明的筆記本',
+          newText: '',
+          list: [
+            {
+              id: 1,
+              content: '一些內容'
+            },
+            {
+              id: 2,
+              content: '第二筆內容'
+            }
+          ],
+          other: [],
+          tempData: {}
+        }
+      },
+      methods: {
+        addData() {
+          const id = (new Date()).getTime();
+          // #1 請問 newData 如何與 list 的單一品項結構一致
+          const newData = {
+            id,
+            content: this.newText
+          }
+          console.log(newData);
+          
+          this.newText = ''; // 清除 newText 的方法
+          // #2 新增一個項目至 list
+          this.list.push(newData);
+        },
+      },
+      created() {
+      }
+    }).mount('#app')
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 我房子在這 -->
+  <div id="app">
+    {{ text }}
+    <input type="text" v-model="text"><!-- v- Vue -->
+    <!-- 指令 directive -->
+    <span v-text="text"></span>
+
+
+    <button type="button" @click="trigger">按我</button>
+    <!-- v-on: 縮寫形式 @ -->
+
+    <button type="button">按我</button>
+    <br>
+    <img :src="imgUrl" alt="">
+    <!-- v-bind: 縮寫形式 : -->
+
+
+    <ul><!-- item 單一物件的內容、key 代表索引值 -->
+      <!-- key 最建議榜 id -->
+      <li v-for="(item, key) in list" :key="key">
+        {{ item.name }} {{ key }}
+      </li>
+    </ul>
+
+    <template v-for="(item, key) in list" :key="key + '123'"><!-- 這段不會被渲染 -->
+      <label for="">{{item.name}}</label>
+      <input type="text" v-model="item.name">
+    </template>
+
+    <input type="text" :value="text">
+    <br>
+    <span v-if="isShow">這裡有一段話</span>
+    <span v-else>這裡沒有一段話（真的）</span>
+    <input type="button" value="切換" @click="isShow=!isShow">
+
+  </div>
+  <script>
+    const obj = {
+      data() {
+        return { // 一律使用 function return
+          text: '卡斯伯棒棒',
+          imgUrl: 'https://images.unsplash.com/photo-1621570274959-83e254246c07?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+          list: [
+            { name: '小明' }, { name: '小美' }, { name: '杰倫' }
+          ],
+          isShow: true,
+        }
+      },
+      methods: { // 函式的集合
+        trigger() {
+          this.text = 'Ray 棒棒'
+        }
+      },
+      created() { // 元件生成，必定會執行得項目
+
+      }
+    }
+
+    Vue.createApp(obj)
+      .mount('#app');
+
+  </script>
+</body>
+</html>

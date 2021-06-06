@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  
+  <script>
+  let person1 = {
+    name: '小明',
+  }
+  let person2;
+
+  function fn(item) {
+    person2 = person1; // 此段如何修改，可以避免最後的值變成小美
+    person2.name = '小美';
+  }
+
+  fn(person1);
+  console.log(person1.name); // 值為 小明
+
+  </script>
+</body>
+</html>

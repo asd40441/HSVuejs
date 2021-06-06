@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  
+  <script>
+  let person1 = {
+    name: '小明',
+  }
+
+  let person2 = person1;
+  person2 = {
+    name: '小美',
+  }
+
+  console.log(person1.name); // 值為 小明 or 小美
+
+  </script>
+</body>
+</html>

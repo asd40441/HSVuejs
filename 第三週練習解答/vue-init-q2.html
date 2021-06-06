@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 我房子在這 -->
+  <div id="app">
+    <h1>如何綁定文字與 input 的資料，並實現雙向綁定</h1>
+    {{ text }}
+    <input type="text" v-model="text">
+  </div>
+  
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return { text: '這裡應該要呈現文字' };
+      },
+      methods: {
+
+      },
+      created() {
+        console.log(this);
+      }
+    }).mount('#app')
+
+
+  </script>
+</body>
+</html>

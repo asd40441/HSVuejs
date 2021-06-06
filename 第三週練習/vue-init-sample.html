@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 我房子在這 -->
+  <div id="app">
+    <!-- 基礎運用 -->
+
+    <button type="button" @click="changeText">
+      更新物件內的文字
+    </button>
+    <input type="text" v-model="text">
+
+    <!-- 列表 -->
+    <ul>
+      <li>
+      </li>
+    </ul>
+
+    <!-- 屬性運用 -->
+    <img src="imgUrl" alt="">
+
+    <!-- 判斷式 -->
+    <div>這段要顯示</div>
+    <div>這段不要顯示</div>
+  </div>
+
+  <!-- 朋友的房子 -->
+  <div id="app2">
+
+  </div>
+  
+  <script>
+    const app = Vue.createApp({
+      data(){
+        return {
+          text:'111',
+
+        }
+      },
+      methods:{
+        changeText(){
+          this.text = "Changed";
+        }
+      },
+      create(){
+
+      }
+    }).mount("#app");
+
+  </script>
+</body>
+</html>

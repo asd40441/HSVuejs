@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <!-- 我房子在這 -->
+  <div id="app">
+    <h1>如何呈現多筆資料在畫面上</h1>
+    <ul>
+      <li v-for="item in list" :key="item.name">{{ item.name }}</li>
+    </ul>
+  </div>
+  
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return { 
+          list: [
+            { name: '小明' }, { name: '小美' }, { name: '杰倫' }
+          ]
+        };
+      },
+      methods: {
+        alert() {
+          alert(this.text)
+        }
+      },
+      created() {
+
+      }
+    }).mount('#app')
+
+
+  </script>
+</body>
+</html>

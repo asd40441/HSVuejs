@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  
+  <script>
+  // 物件參考特性
+  var text = '一段文字';
+  var text2 = text;
+  text2 = '更新文字'
+  console.log(text === text2);
+
+
+  // var a = {
+  //   name: 'a',
+  // }
+  // var b = {
+  //   name: 'a',
+  // }
+  // console.log(a === b);
+  // // ===
+  // var a = {
+  //   name: 'a',
+  // }
+  // var b = a;
+  // b.name = 'b';
+  // console.log(a === b);
+
+  // // 
+  // var a = {
+  //   name: 'a',
+  // }
+  
+  // function changeData(param) {
+  //   param.name = 'b'
+  //   return param;
+  // }
+  // var b = changeData(a);
+  // console.log(a === b);
+
+
+  // ===
+
+  // var a = {
+  //   name: 'a',
+  // }
+  
+  // function changeData(param) {
+  //   return {
+  //     name: param.name
+  //   }
+  // }
+  // var b = changeData(a);
+  // console.log(a === b);
+
+
+  // 解決辦法，淺層複製
+  // var a = {
+  //   name: 'a',
+  // }
+  
+  // function changeData(param) {
+  //   // 方法一：Object assign
+  //   // const newData = Object.assign(param, {});
+  //   // console.log('Object.assign', newData); // 淺層複製
+
+  //   // 方法二：展開
+  //   const newData = { ...param };
+  //   console.log('Spread syntax', newData); // 淺層複製
+  //   return newData;
+  // }
+  // var b = changeData(a);
+  // console.log(a === b);
+
+  // 深層複製
+  var a = {
+    name: 'a',
+  }
+  
+  function changeData(param) {
+    const newData = JSON.parse( JSON.stringify(param) );
+    console.log('stringify', newData); // 淺層複製
+    return newData;
+  }
+  var b = changeData(a);
+  console.log(a === b);
+
+
+
+  </script>
+</body>
+</html>
