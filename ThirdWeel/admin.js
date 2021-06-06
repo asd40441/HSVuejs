@@ -7,7 +7,8 @@ const app = {
             tempProduct: {
                 imagesUrl: [],
             }, // 暫存產品列表
-            newData: false //判斷是否新產品
+            newData: false, //判斷是否新產品
+            loading: false
         }
     },
     mounted() { // 生命週期
@@ -21,6 +22,7 @@ const app = {
     },
     methods: {
         getProducts() { // 取得產品列表
+            this.loading = true;
             let apiUrl = `${this.url}/api/${this.path}/admin/products`;
             axios.get(apiUrl)
                 .then(res => {
@@ -28,6 +30,7 @@ const app = {
                     if (res.data.success) {
                         console.log("讀取產品成功");
                         this.products = res.data.products;
+                        this.loading = false;
                     } else {
                         console.log("讀取產品失敗");
                         return;
@@ -44,14 +47,16 @@ const app = {
                 apiUrl = `${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`;
                 http = 'put';
             }
-            axios[http](apiUrl,{data: this.tempProduct})
-            .then(res => {
-                console.log('成功',res);
-                productModal.hide();
-                this.getProducts();
-            })
+            axios[http](apiUrl, {
+                    data: this.tempProduct
+                })
+                .then(res => {
+                    console.log('成功', res);
+                    productModal.hide();
+                    this.getProducts();
+                })
         },
-        openModal(newData, item) {
+        openModal(newData, item) {  // 判斷新增、修改、刪除產品功能
             if (newData === 'add') {
                 this.tempProduct = {
                     imagesUrl: [],
@@ -71,9 +76,9 @@ const app = {
                 this.newData = false;
                 delProductModal.show();
             }
-            console.log(this.tempProduct);
+            // console.log(this.tempProduct);
         },
-        deleteProduct() {
+        deleteProduct() {   // 刪除產品
             axios.delete(`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`) // 傳送刪除請求
                 .then(res => {
                     // console.log(res);
@@ -89,6 +94,11 @@ const app = {
                 .catch(res => {
                     console.log(res);
                 })
+        },
+        createImagesArray() {   // 建立圖片陣列
+            this.tempProduct.imagesUrl = [
+                ''
+            ];
         }
     },
 }

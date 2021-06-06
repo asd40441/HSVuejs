@@ -77,29 +77,11 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <!-- <div class="col-sm-4">
-                <div class="mb-1">
-                  <div class="form-group">
-                    <label for="imageUrl">主要圖片網址</label>
-                    <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imageUrl">
-                  </div>
-                  <img class="img-fluid" :src="tempProduct.imageUrl" alt="">
-                </div>
-                <div>
-                  <button class="btn btn-outline-primary btn-sm d-block w-100">
-                    新增圖片
-                  </button>
-                </div>
-                <div>
-                  <button class="btn btn-outline-danger btn-sm d-block w-100">
-                    刪除圖片
-                  </button>
-                </div>
-              </div> -->
+
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="imageUrl">主要圖片</label>
-                  <input type="text" class="form-control" placeholder="請輸入圖片連結"v-model="tempProduct.imageUrl">
+                  <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imageUrl">
                   <img class="img-fluid" :src="tempProduct.imageUrl">
                 </div>
                 <div class="mb-1">多圖新增</div>
@@ -109,23 +91,21 @@
                       <label for="imageUrl">圖片網址</label>
                       <input type="text" class="form-control" placeholder="請輸入圖片連結"
                         v-model="tempProduct.imagesUrl[key]">
+                      <button class="btn btn-outline-danger btn-sm d-block w-30" @click="tempProduct.imagesUrl.splice(key,1)">
+                        刪除
+                      </button>
                     </div>
                     <img class="img-fluid" :src="image">
                   </div>
-                  <div v-if="!tempProduct.imagesUrl.length || tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]">
+                  <div v-if="!tempProduct.imagesUrl.length || tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1] && tempProduct.imagesUrl.length < 5">
                     <button class="btn btn-outline-primary btn-sm d-block w-100"
                       @click="tempProduct.imagesUrl.push('')">
                       新增圖片
                     </button>
                   </div>
-                  <div v-else>
-                    <button class="btn btn-outline-danger btn-sm d-block w-100" @click="tempProduct.imagesUrl.pop()">
-                      刪除圖片
-                    </button>
-                  </div>
                 </div>
                 <div v-else>
-                  <button class="btn btn-outline-primary btn-sm d-block w-100" @click="createImages">
+                  <button class="btn btn-outline-primary btn-sm d-block w-100" @click="createImagesArray">
                     新增陣列圖片
                   </button>
                 </div>
@@ -222,6 +202,11 @@
       </div>
     </div>
     <!-- Modal -->
+    <div class="d-flex justify-content-center" v-if="loading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
