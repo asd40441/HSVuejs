@@ -10,32 +10,36 @@
 </head>
 
 <body>
-  <div class="container">
-    <div id="app" class="container">
-      <table class="table mt-4">
-        <thead>
-          <tr>
-            <th>產品名稱</th>
-            <th width="120">
-              原價
-            </th>
-            <th width="120">
-              售價
-            </th>
-            <th width="150">
-              是否啟用
-            </th>
-            <th width="120">
-              刪除
-            </th>
-          </tr>
-        </thead>
-        <tbody id="productList">
-        </tbody>
-      </table>
-      <p>目前有 <span id="productCount">0</span> 項產品</p>
+  <div id="app">
+    <div class="container">
+      <div class="container">
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th>產品名稱</th>
+              <th width="120">
+                原價
+              </th>
+              <th width="120">
+                售價
+              </th>
+              <th width="150">
+                是否啟用
+              </th>
+              <th width="120">
+                刪除
+              </th>
+            </tr>
+          </thead>
+          <!-- 渲染產品 -->
+          <tbody v-html="list">
+          </tbody>
+        </table>
+        <p>目前有 <span>{{count}}</span> 項產品</p>
+      </div>
     </div>
   </div>
+
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
     integrity='sha512-Xk3wWei2TGrsh9kDSBKUMIjw/86sLUvhtnv9f7fOuIwhhiUTKz8szkWkzHthrM5Bb3Bu9idSzkxOrkzhcneuiw=='
