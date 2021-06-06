@@ -1,84 +1,96 @@
-// 取得HTML資料
-const list = document.querySelector('#productList');
-const productCount = document.querySelector('#productCount');
-
 const app = {
-    url: 'https://vue3-course-api.hexschool.io', // 站點
-    path: 'asd40441', // api path
-    data: [],
-    getProducts() { // 取得產品列表
-        axios.get(`${this.url}/api/${this.path}/admin/products`)
-            .then(res => {
-                console.log(res);
-                if(res.data.success){
-                    console.log("讀取產品成功");
-                }else{
-                    console.log("讀取產品失敗");
-                    return;
-                }
-                data = res.data.products;
-                // console.log(data);
-                this.render();
-            })
-            .catch(res => {
-                console.log(res);
-            })
+    data() {
+        return {
+            url: 'https://vue3-course-api.hexschool.io', // 站點
+            path: 'asd40441', // api path
+            products: [], // 產品列表
+            tempProduct: {
+                imagesUrl: [],
+            }, // 暫存產品列表
+            newData: false //判斷是否新產品
+        }
     },
-    render() { // 渲染產品列表
-        let str = '';
-        let count = 0;
-        data.forEach(item => {
-            str = `${str}
-        <tr>
-              <td>${item.title}</td>
-              <td width="120">
-                ${item.origin_price}
-              </td>
-              <td width="120">
-                ${item.price}
-              </td>
-              <td width="100">
-                <span class="">${item.is_enabled}</span>
-              </td>
-              <td width="120">
-                <button type="button" class="btn btn-sm btn-outline-danger move deleteBtn" data-action="remove" data-id="${item.id}"> 刪除 </button>
-              </td>
-            </tr>`
-            count += 1;
-        })
-        list.innerHTML = str;
-        productCount.innerHTML = count;
+    mounted() { // 生命週期
+        productModal = new bootstrap.Modal(document.getElementById('productModal')); // 取得Modal元素
+        delProductModal = new bootstrap.Modal(document.getElementById('delProductModal')); // 取得delModal元素
+
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        // console.log(token);  
+        axios.defaults.headers.common['Authorization'] = token;
+        this.getProducts();
     },
-    deleteProduct() { 
-        list.addEventListener('click', (e) => {     // 刪除按鈕
-            if (e.target.nodeName !== 'BUTTON') {
-                return;
-            }
-            const id = e.target.getAttribute('data-id');
-            // console.log(id);
-            axios.delete(`${this.url}/api/${this.path}/admin/product/${id}`)    // 傳送刪除請求
+    methods: {
+        getProducts() { // 取得產品列表
+            let apiUrl = `${this.url}/api/${this.path}/admin/products`;
+            axios.get(apiUrl)
                 .then(res => {
+                    // console.log(res);
+                    if (res.data.success) {
+                        console.log("讀取產品成功");
+                        this.products = res.data.products;
+                    } else {
+                        console.log("讀取產品失敗");
+                        return;
+                    }
+                })
+                .catch(res => {
                     console.log(res);
-                    if(res.data.success){
+                })
+        },
+        productUpdata() { // 新增產品或修改
+            let apiUrl = `${this.url}/api/${this.path}/admin/product`;
+            let http = 'post';
+            if (!this.newData) {
+                apiUrl = `${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`;
+                http = 'put';
+            }
+            axios[http](apiUrl,{data: this.tempProduct})
+            .then(res => {
+                console.log('成功',res);
+                productModal.hide();
+                this.getProducts();
+            })
+        },
+        openModal(newData, item) {
+            if (newData === 'add') {
+                this.tempProduct = {
+                    imagesUrl: [],
+                }
+                this.newData = true;
+                productModal.show();
+            } else if (newData === 'edit') {
+                this.tempProduct = {
+                    ...item
+                };
+                this.newData = false;
+                productModal.show();
+            } else if (newData === 'delete') {
+                this.tempProduct = {
+                    ...item
+                };
+                this.newData = false;
+                delProductModal.show();
+            }
+            console.log(this.tempProduct);
+        },
+        deleteProduct() {
+            axios.delete(`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`) // 傳送刪除請求
+                .then(res => {
+                    // console.log(res);
+                    if (res.data.success) {
                         console.log("產品已刪除");
-                    }else{
+                    } else {
                         console.log("產品刪除失敗");
                         return;
                     }
+                    delProductModal.hide();
                     this.getProducts();
                 })
                 .catch(res => {
                     console.log(res);
                 })
-        });
+        }
     },
-    init() { // 初始化
-        const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        // console.log(token);
-        axios.defaults.headers.common['Authorization'] = token;
-        this.getProducts();
-        this.deleteProduct();
-    }
 }
 
-app.init(); // 頁面初始化
+Vue.createApp(app).mount("#app");
