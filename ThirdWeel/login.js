@@ -6,11 +6,13 @@ const app = {
             user: {
                 username: '',
                 password: ''
-            }
+            },
+            loading: false
         }
     },
     methods: {
         loginUser() {
+            this.loading = true;
             axios.post(`${this.url}/admin/signin`, this.user) // 傳送登入請求
                 .then(res => {
                     console.log(res);
@@ -20,6 +22,7 @@ const app = {
                     } else {
                         console.log("登入失敗");
                         alert("登入失敗");
+                        this.loading = false;
                         return;
                     }
                     // const token = res.data.token;

@@ -27,9 +27,15 @@
               <input type="password" class="form-control" id="password" placeholder="Password" required v-model="user.password">
               <label for="password">Password</label>
             </div>
-            <button class="btn btn-lg btn-primary w-100 mt-3" type="submit" @click.prevent="loginUser">
+            <button class="btn btn-lg btn-primary w-100 mt-3" type="button" disabled v-if="loading">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+            <button class="btn btn-lg btn-primary w-100 mt-3" type="submit" @click.prevent="loginUser" v-else>
               登入
             </button>
+            
+            
           </form>
         </div>
       </div>
