@@ -1,19 +1,17 @@
-// 取得HTML資料
-const email = document.querySelector('#username');
-const password = document.querySelector('#password');
-const btn = document.querySelector('#btn');
 
 const app = {
-    url: 'https://vue3-course-api.hexschool.io', // 站點
-    path: 'asd40441', // api path
-    user: {
-        username: '',
-        password: ''
+    data() {
+        return {
+            url: 'https://vue3-course-api.hexschool.io', // 站點
+            path: 'asd40441', // api path
+            user: {
+                username: '',
+                password: ''
+            }
+        }
     },
-    loginUser() {
-        btn.addEventListener('click', e => { // 點擊登入
-            this.user.username = email.value;
-            this.user.password = password.value;
+    methods: {
+        loginUser() {
             axios.post(`${this.url}/admin/signin`, this.user) // 傳送登入請求
                 .then(res => {
                     console.log(res);
@@ -34,11 +32,9 @@ const app = {
                 .catch(res => {
                     console.log(res);
                 })
-        });
-
+        }
     },
-    init() {
-        this.loginUser();
+    create() {
+
     }
 }
-app.init();
