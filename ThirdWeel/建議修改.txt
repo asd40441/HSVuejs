@@ -1,0 +1,19 @@
+1. url、path 可以改為全域註冊，因為這邊的資料不會修改也不會在畫面上使用
+
+2. 登入頁面中，使用 form 表單可以改為在 form 標籤設定 @submit.prevent="loginUser"，當表單送出則執行函式
+
+3. 產品頁面的 button 建議都設定 type="button"，因為 button 的預設行為是 submit，而這邊沒有需要 submit 的地方
+
+4. 點擊編輯按鈕時，modal-title 可以改為編輯產品
+
+5. 建議減少 div 標籤的使用，如果只要用 v-if 來判斷區塊是否顯示，可以改為 template 標籤。讓 HTML 結構更加精簡
+
+6. 主要圖片、圖片網址、單位、說明內容的 label for 和 input id 沒有對上哩，記得修改～
+
+7. 沒填到必填的欄位需要出現 alert 提示訊息，內容需要回傳 response.data.message
+
+8. 新增產品或修改在串接 API 時，也需要判斷 res.data.success，並加上 .catch 來印出錯誤訊息，方便除錯
+
+9. 刪除產品 Modal 建議可以顯示產品名稱
+
+10. 文案及內容可以試著補上更豐富的內容，如：不同的標題、圖片，詳細的產品說明

@@ -1,4 +1,4 @@
-const app = {
+const app = Vue.createApp({
     data() {
         return {
             url: 'https://vue3-course-api.hexschool.io', // 站點
@@ -8,7 +8,8 @@ const app = {
                 imagesUrl: [],
             }, // 暫存產品列表
             newData: false, //判斷是否新產品
-            loading: false
+            loading: false,
+            pagination: {}
         }
     },
     mounted() { // 生命週期
@@ -30,6 +31,7 @@ const app = {
                     if (res.data.success) {
                         console.log("讀取產品成功");
                         this.products = res.data.products;
+                        this.pagination = res.data.pagination;
                         this.loading = false;
                     } else {
                         console.log("讀取產品失敗");
@@ -97,6 +99,35 @@ const app = {
             ];
         }
     },
-}
+});
 
-Vue.createApp(app).mount("#app");
+app.component('pagination', {
+    props: ['page'],
+    template: `
+    <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item" v-for="item in page.total_pages" :key="item">
+        <a class="page-link" href="#">{{ item }}</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+    `,
+    data() {
+        return {
+
+        }
+    },
+    created() {
+        console.log(this.page);
+    }
+})
+
+
+app.mount("#app");
