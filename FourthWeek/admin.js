@@ -22,9 +22,9 @@ const app = Vue.createApp({
         this.getProducts();
     },
     methods: {
-        getProducts() { // 取得產品列表
+        getProducts(page) { // 取得產品列表
             this.loading = true;
-            let apiUrl = `${this.url}/api/${this.path}/admin/products`;
+            let apiUrl = `${this.url}/api/${this.path}/admin/products?page=${page}`;
             axios.get(apiUrl)
                 .then(res => {
                     console.log(res);
@@ -109,9 +109,9 @@ app.component('pagination', {
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
-    </li>
-    <li class="page-item" v-for="item in page.total_pages" :key="item">
-        <a class="page-link" href="#">{{ item }}</a></li>
+    </li>   
+    <li class="page-item" :class="{ 'active': item === page.current_page }" v-for="item in page.total_pages" :key="item">
+        <a class="page-link" href="#" @click="$emit('get-products' , item)">{{ item }}</a></li>
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
@@ -120,12 +120,10 @@ app.component('pagination', {
   </ul>
     `,
     data() {
-        return {
-
-        }
+        return {}
     },
     created() {
-        console.log(this.page);
+        // console.log(this.page);
     }
 })
 
