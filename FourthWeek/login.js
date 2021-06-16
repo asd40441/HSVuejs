@@ -13,7 +13,7 @@ const app = {
     methods: {
         loginUser() {
             this.loading = true;
-            axios.post(`${this.url}/admin/signin`, this.user) // 傳送登入請求
+            axios.post(`${url}/admin/signin`, this.user) // 傳送登入請求
                 .then(res => {
                     console.log(res);
                     if (res.data.success) {
