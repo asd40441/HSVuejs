@@ -64,10 +64,15 @@
         </tbody>
       </table>
     </div>
+    
+    <!-- 分頁元件 -->
     <pagination :page="pagination" @get-products="getProducts"></pagination>
+    <!-- 分頁元件 -->
+
     <!-- Modal -->
     <product-modal :temp-product="tempProduct" @updata-product="productUpdata"></product-modal>
     <!-- Modal -->
+
     <div id="delProductModal" ref="delProductModal" class="modal fade" tabindex="-1"
       aria-labelledby="delProductModalLabel" aria-hidden="true">
       <div class="modal-dialog">
