@@ -1,0 +1,8 @@
+這裡提供幾點建議：
+
+新增產品 modal 的產品描述、說明內容、是否啟用 label 的 for 值需和 textarea / input 的 id 值相同
+新增產品時沒填到必填的欄位需要出現 alert 提示訊息，內容需要回傳 response.data.message
+文案及內容可以試著補上更豐富的內容，如：不同的標題、圖片，詳細的產品說明
+分頁 a 標籤 click 時需加上 prevent 阻止預設行為
+apipath 和 api 可以放在全域使用，因畫面操作不會使用到此資料，也不太會變動
+產品 modal 可以和 pagination 一樣拆成獨立的 js 檔（可統一放在 components 資料夾管理），再用 import 的方式載入

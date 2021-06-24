@@ -125,6 +125,25 @@ const app = Vue.createApp(
             .catch(err=>{
                 console.log(err);
             })
+        },
+        onSubmit(){
+            this.loadingStatus.loadingItem = 'pay';
+            const api = `${url}/api/${path}/order`;
+            axios.post(api , {data : this.form})
+            .then(res=>{
+                if(res.data.success){
+                    alert('送出訂單成功！');
+                    this.$refs.form.resetForm();
+                    this.form.message = '';
+                }else{
+                    alert(res.data.message);
+                }                
+                console.log('送出訂單',res);
+                this.getCart();
+            })
+            .catch(err=>{
+                console.log(err);
+            })
         }
     },
     mounted(){
@@ -133,8 +152,6 @@ const app = Vue.createApp(
     }
 }
 );
-
-
 
 Object.keys(VeeValidateRules).forEach(rule => {
     if (rule !== 'default') {
