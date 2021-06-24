@@ -11,10 +11,8 @@ const app = Vue.createApp(
                 loadingStatus: {
                     loadingItem: '',
                 },
-                // 產品列表
-                products: [],
-                // props 傳遞到內層的暫存資料
-                product: {},
+                products: [],// 產品列表
+                product: {},    // props 傳遞到內層的暫存資料
                 // 表單結構
                 form: {
                     user: {
@@ -25,12 +23,11 @@ const app = Vue.createApp(
                     },
                     message: '',
                 },
-                // 購物車列表
-                cart: {},
+                cart: {},   // 購物車列表
             }
     },
     methods: {
-        getProducts(){
+        getProducts(){  // 取得商品列表
             const api = `${url}/api/${path}/products`;
             axios.get(api)
             .then(res=>{
@@ -42,7 +39,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        openModal(item){
+        openModal(item){    // 開啟Modal
             this.loadingStatus.loadingItem = item.id;
             const api = `${url}/api/${path}/product/${item.id}`;
             axios.get(api)
@@ -57,7 +54,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        addCart(id , qty = 1){
+        addCart(id , qty = 1){  // 新增購物車
             this.loadingStatus.loadingItem = id;
             const api = `${url}/api/${path}/cart`;
             const cart = {
@@ -67,13 +64,14 @@ const app = Vue.createApp(
             axios.post(api , {data : cart})
             .then(res=>{
                 console.log('新增購物車',res);
+                this.$refs.userProductModal.hideModal();
                 this.getCart();
             })
             .catch(err=>{
                 console.log(err);
             })
         },
-        getCart(){
+        getCart(){  // 取得購物車
             const api = `${url}/api/${path}/cart`;
             axios.get(api)
             .then(res=>{
@@ -85,7 +83,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        updataCart(item){
+        updataCart(item){   // 修改購物車
             this.loadingStatus.loadingItem = item.id;
             const api = `${url}/api/${path}/cart/${item.id}`;
             const cart = {
@@ -102,7 +100,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        clearCart(){
+        clearCart(){    // 清空購物車
             this.loadingStatus.loadingItem = 'clear';
             const api = `${url}/api/${path}/carts`;
             axios.delete(api)
@@ -114,7 +112,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        deleteCart(item){
+        deleteCart(item){   // 刪除購物車
             this.loadingStatus.loadingItem = 'delete';
             const api = `${url}/api/${path}/cart/${item.id}`;
             axios.delete(api)
@@ -126,7 +124,7 @@ const app = Vue.createApp(
                 console.log(err);
             })
         },
-        onSubmit(){
+        onSubmit(){     // 送出訂單
             this.loadingStatus.loadingItem = 'pay';
             const api = `${url}/api/${path}/order`;
             axios.post(api , {data : this.form})
@@ -164,10 +162,9 @@ app.component('VField', VeeValidate.Field);
 app.component('ErrorMessage', VeeValidate.ErrorMessage);
 
 VeeValidateI18n.loadLocaleFromURL('./zh_TW.json');
-// Activate the locale
 VeeValidate.configure({
     generateMessage: VeeValidateI18n.localize('zh_TW'),
-    validateOnInput: true, // 調整為輸入字元立即進行驗證
+    validateOnInput: true, 
 });
 
 app.component('userProductModal' , productModal);
