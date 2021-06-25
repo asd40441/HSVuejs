@@ -13,8 +13,8 @@ const app = Vue.createApp(
                 },
                 products: [],// 產品列表
                 product: {},    // props 傳遞到內層的暫存資料
-                // 表單結構
-                form: {
+                
+                form: {// 表單結構
                     user: {
                         name: '',
                         email: '',
