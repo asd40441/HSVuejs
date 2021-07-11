@@ -25,6 +25,28 @@ const routes = [
     path: '/product/:id',
     component: () => import('../views/Product.vue'),
   },
+  {
+    path: '/login',
+    component: () => import('../views/Login.vue'),
+  },
+  {
+    path: '/admin',
+    component: () => import('../views/Dashboard.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/DashboardProducts.vue'),
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/DashboardOrders.vue'),
+      },
+    ],
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue'),
+  },
 ];
 
 const router = createRouter({
