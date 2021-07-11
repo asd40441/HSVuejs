@@ -22,3 +22,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+<a href="https://asd40441.github.io/HSVuejs/SixthWeek/dist/index.html">https://asd40441.github.io/HSVuejs/SixthWeek/dist/index.html</a>
