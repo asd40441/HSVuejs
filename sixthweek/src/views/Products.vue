@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4">
+  <div class="mt-4 wrap">
     <table class="table align-middle" v-for="item in products" :key="item.id">
       <thead>
         <tr>
@@ -84,6 +84,10 @@ export default {
 </script>
 
 <style>
+.wrap{
+  width: 1200px;
+  margin: 0 auto;
+}
 table {
   margin: 0 auto;
 }

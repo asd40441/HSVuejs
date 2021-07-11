@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4">
+  <div class="mt-4 wrap">
     <div class="text-end">
       <button class="btn btn-outline-danger" type="button" @click="clearCart">
         <i class="fas fa-spinner fa-pulse"></i>
@@ -127,3 +127,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.wrap{
+  width: 1200px;
+}
+</style>

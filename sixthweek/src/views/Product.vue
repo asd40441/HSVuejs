@@ -1,6 +1,8 @@
 <template>
   <h1>單一產品頁面</h1>
-  {{ product }}
+  <div class="product">
+    {{ product }}
+  </div>
 </template>
 
 <script>
@@ -21,3 +23,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.product{
+  width: 1200px;
+  margin: 0 auto;
+}
+</style>
